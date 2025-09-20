@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Acna</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .typing::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            50% {
+                opacity: 1;
+            }
+
+            51%,
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .skill-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .project-card {
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(59, 130, 246, 0.9), rgba(99, 102, 241, 0.9));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: #e5e7eb;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 3px;
+            transition: width 1.5s ease-out;
+            width: 0;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-900">
+
+    <!-- Navbar -->
+    <header class="fixed w-full bg-white/90 backdrop-blur-md shadow-lg z-50 transition-all duration-300">
+        <nav class="container mx-auto flex justify-between items-center p-4">
+            <h1 class="text-2xl font-bold gradient-text">Acna</h1>
+            <ul class="flex space-x-8">
+                <li><a href="#about" class="nav-link hover:text-blue-600 transition-colors">About</a></li>
+                <li><a href="#skills" class="nav-link hover:text-blue-600 transition-colors">Skills</a></li>
+                <li><a href="#projects" class="nav-link hover:text-blue-600 transition-colors">Projects</a></li>
+                <li><a href="#contact" class="nav-link hover:text-blue-600 transition-colors">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section
+        class="h-screen flex items-center justify-center bg-gradient-to-br from-purple-600 via-blue-600 to-indigo-800 text-white relative overflow-hidden">
+        <!-- Background particles -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="particle absolute w-2 h-2 bg-white/20 rounded-full animate-pulse"
+                style="top: 20%; left: 10%; animation-delay: 0s;"></div>
+            <div class="particle absolute w-1 h-1 bg-white/30 rounded-full animate-pulse"
+                style="top: 40%; left: 20%; animation-delay: 1s;"></div>
+            <div class="particle absolute w-3 h-3 bg-white/10 rounded-full animate-pulse"
+                style="top: 60%; left: 80%; animation-delay: 2s;"></div>
+            <div class="particle absolute w-2 h-2 bg-white/25 rounded-full animate-pulse"
+                style="top: 80%; left: 70%; animation-delay: 3s;"></div>
+            <div class="particle absolute w-1 h-1 bg-white/40 rounded-full animate-pulse"
+                style="top: 30%; left: 90%; animation-delay: 4s;"></div>
+        </div>
+
+        <div class="text-center px-6 z-10 fade-in">
+            <div class="floating">
+                <h2
+                    class="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
+                    Hi, I'm Angga Cipta
+                </h2>
+            </div>
+            <p class="text-xl md:text-3xl mb-8 typing" id="typing-text">A Passionate Fullstack Developer</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="#projects"
+                    class="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold shadow-xl hover:bg-gray-100 hover:scale-105 transition-all duration-300">
+                    <i class="fas fa-code mr-2"></i>View My Work
+                </a>
+                <a href="#contact"
+                    class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition-all duration-300">
+                    <i class="fas fa-envelope mr-2"></i>Contact Me
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+            <div class="w-6 h-10 border-2 border-white rounded-full flex justify-center">
+                <div class="w-1 h-3 bg-white rounded-full mt-2 animate-bounce"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="py-20 container mx-auto px-6">
+        <div class="fade-in">
+            <h3 class="text-4xl font-bold text-center mb-4 gradient-text">About Me</h3>
+            <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mb-10"></div>
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/3">
+                    <div class="relative">
+                        <div class="w-64 h-64 mx-auto rounded-full bg-gradient-to-br from-blue-400 to-purple-600 p-1">
+                            <div class="w-full h-full rounded-full bg-gray-100 flex items-center justify-center">
+                                <i class="fas fa-user text-6xl text-gray-400"></i>
+                            </div>
+                        </div>
+                        <div
+                            class="absolute -bottom-4 -right-4 w-20 h-20 bg-yellow-400 rounded-full flex items-center justify-center">
+                            <i class="fas fa-code text-2xl text-white"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-2/3">
+                    <p class="text-lg text-gray-600 leading-relaxed mb-6">
+                        I am a software developer with experience in building web applications, APIs, and modern
+                        interfaces.
+                        I love solving problems with clean and efficient code, and I'm passionate about creating
+                        user-friendly
+                        applications that make a difference.
+                    </p>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-8">
+                        With a strong foundation in both frontend and backend technologies, I enjoy working on
+                        challenging
+                        projects that push the boundaries of what's possible in web development.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-full font-medium">Problem Solver</span>
+                        <span class="px-4 py-2 bg-purple-100 text-purple-800 rounded-full font-medium">Team
+                            Player</span>
+                        <span class="px-4 py-2 bg-green-100 text-green-800 rounded-full font-medium">Continuous
+                            Learner</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <div class="fade-in">
+                <h3 class="text-4xl font-bold text-center mb-4 gradient-text">My Skills</h3>
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mb-16"></div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="skill-card bg-white p-6 rounded-xl shadow-lg text-center">
+                        <div class="text-4xl mb-4 text-orange-500">
+                            <i class="fab fa-html5"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold mb-2">HTML5</h4>
+                        <p class="text-gray-600 text-sm mb-4">Advanced</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-width="90"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card bg-white p-6 rounded-xl shadow-lg text-center">
+                        <div class="text-4xl mb-4 text-blue-500">
+                            <i class="fab fa-css3-alt"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold mb-2">CSS3</h4>
+                        <p class="text-gray-600 text-sm mb-4">Advanced</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-width="85"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card bg-white p-6 rounded-xl shadow-lg text-center">
+                        <div class="text-4xl mb-4 text-yellow-500">
+                            <i class="fab fa-js-square"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold mb-2">JavaScript</h4>
+                        <p class="text-gray-600 text-sm mb-4">Intermediate</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-width="70"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card bg-white p-6 rounded-xl shadow-lg text-center">
+                        <div class="text-4xl mb-4 text-purple-500">
+                            <i class="fab fa-php"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold mb-2">PHP</h4>
+                        <p class="text-gray-600 text-sm mb-4">Advanced</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-width="88"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card bg-white p-6 rounded-xl shadow-lg text-center">
+                        <div class="text-4xl mb-4 text-red-500">
+                            <i class="fab fa-laravel"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold mb-2">Laravel</h4>
+                        <p class="text-gray-600 text-sm mb-4">Advanced</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-width="85"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card bg-white p-6 rounded-xl shadow-lg text-center">
+                        <div class="text-4xl mb-4 text-cyan-500">
+                            <i class="fab fa-react"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold mb-2">React</h4>
+                        <p class="text-gray-600 text-sm mb-4">Intermediate</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-width="75"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card bg-white p-6 rounded-xl shadow-lg text-center">
+                        <div class="text-4xl mb-4 text-green-500">
+                            <i class="fab fa-node-js"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold mb-2">Node.js</h4>
+                        <p class="text-gray-600 text-sm mb-4">Intermediate</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-width="70"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card bg-white p-6 rounded-xl shadow-lg text-center">
+                        <div class="text-4xl mb-4 text-blue-600">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold mb-2">MySQL</h4>
+                        <p class="text-gray-600 text-sm mb-4">Advanced</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-width="82"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card bg-white p-6 rounded-xl shadow-lg text-center">
+                        <div class="text-4xl mb-4 text-blue-700">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold mb-2">PostgreSQL</h4>
+                        <p class="text-gray-600 text-sm mb-4">Intermediate</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-width="65"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card bg-white p-6 rounded-xl shadow-lg text-center">
+                        <div class="text-4xl mb-4 text-yellow-600">
+                            <i class="fab fa-golang"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold mb-2">Golang</h4>
+                        <p class="text-gray-600 text-sm mb-4">Intermediate</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-width="60"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="py-20 container mx-auto px-6">
+        <div class="fade-in">
+            <h3 class="text-4xl font-bold text-center mb-4 gradient-text">My Projects</h3>
+            <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mb-16"></div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden relative">
+                    <img src="https://via.placeholder.com/400x200/667eea/ffffff?text=Hospital+Inventory"
+                        alt="Project 1" class="w-full h-48 object-cover">
+                    <div class="project-overlay">
+                        <div class="text-center text-white">
+                            <div class="flex justify-center gap-4 mb-4">
+                                <i class="fas fa-hospital text-2xl"></i>
+                                <i class="fas fa-boxes text-2xl"></i>
+                                <i class="fas fa-database text-2xl"></i>
+                            </div>
+                            <a href="#"
+                                class="bg-white text-blue-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition">
+                                View Project
+                            </a>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-semibold mb-2">Hospital Inventory System</h4>
+                        <p class="text-gray-600 mb-4">A web-based inventory management system for hospitals to track
+                            medical supplies, equipment, and stock levels efficiently.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">PHP</span>
+                            <span class="px-3 py-1 bg-cyan-100 text-cyan-800 text-sm rounded-full">Bootstrap</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-800 text-sm rounded-full">MySQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden relative">
+                    <img src="https://via.placeholder.com/400x200/22223b/ffffff?text=Haruki+Scans"
+                        alt="Project Haruki Scans" class="w-full h-48 object-cover">
+                    <div class="project-overlay">
+                        <div class="text-center text-white">
+                            <div class="flex justify-center gap-4 mb-4">
+                                <i class="fas fa-book-open text-2xl"></i>
+                                <i class="fas fa-language text-2xl"></i>
+                                <i class="fas fa-users text-2xl"></i>
+                            </div>
+                            <a href="#"
+                                class="bg-white text-blue-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition">
+                                View Project
+                            </a>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-semibold mb-2">Haruki Scans</h4>
+                        <p class="text-gray-600 mb-4">A manga/manhwa reading website focused on fan translation. Users
+                            can read, follow, and support their favorite series and scanlation teams.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">Laravel</span>
+                            <span class="px-3 py-1 bg-cyan-100 text-cyan-800 text-sm rounded-full">TailwindCSS</span>
+                            <span
+                                class="px-3 py-1 bg-yellow-100 text-yellow-800 text-sm rounded-full">JavaScript</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-800 text-sm rounded-full">MySQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=400&q=80"
+                        alt="People collaborating in a modern workspace symbolizing teamwork and professional growth, representing the Magangku internship platform"
+                        class="w-full h-48 object-cover">
+                    <div class="project-overlay">
+                        <div class="text-center text-white">
+                            <div class="flex justify-center gap-4 mb-4">
+                                <i class="fas fa-briefcase text-2xl"></i>
+                                <i class="fas fa-search-location text-2xl"></i>
+                                <i class="fas fa-users text-2xl"></i>
+                            </div>
+                            <a href="https://magangku.site" target="_blank" rel="noopener"
+                                class="bg-white text-blue-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition">
+                                View Project
+                            </a>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-semibold mb-2">Magangku</h4>
+                        <p class="text-gray-600 mb-4">Magangku merupakan platform untuk mencari tempat magang. Pengguna
+                            dapat mencari, menemukan, dan melamar tempat magang sesuai minat dan keahlian.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">Laravel</span>
+                            <span class="px-3 py-1 bg-cyan-100 text-cyan-800 text-sm rounded-full">TailwindCSS</span>
+                            <span
+                                class="px-3 py-1 bg-yellow-100 text-yellow-800 text-sm rounded-full">JavaScript</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-800 text-sm rounded-full">MySQL</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-6 text-center">
+            <h3 class="text-3xl font-bold mb-10">Get in Touch</h3>
+            <p class="mb-6 text-gray-600">Feel free to reach out for collaborations or just a friendly hello 👋</p>
+            <a href="mailto:angga.cipta.pranata@gmail.com"
+                class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-700 transition">
+                Say Hello
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white py-6 text-center shadow-inner">
+        <p class="text-gray-500">© 2025 Acna. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Typing animation
+        const typingElement = document.getElementById('typing-text');
+        const texts = [
+            'A Passionate Fullstack Developer',
+            'A Problem Solver',
+            'A Creative Coder',
+            'Building Amazing Web Apps'
+        ];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeWriter() {
+            const currentText = texts[textIndex];
+
+            if (isDeleting) {
+                typingElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && charIndex === currentText.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+                typeSpeed = 500;
+            }
+
+            setTimeout(typeWriter, typeSpeed);
+        }
+
+        // Start typing animation
+        setTimeout(typeWriter, 1000);
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Animate progress bars when skills section comes into view
+        const skillsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const progressBars = entry.target.querySelectorAll('.progress-fill');
+                    progressBars.forEach(bar => {
+                        const width = bar.getAttribute('data-width');
+                        setTimeout(() => {
+                            bar.style.width = width + '%';
+                        }, 300);
+                    });
+                    skillsObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.5
+        });
+
+        const skillsSection = document.getElementById('skills');
+        if (skillsSection) {
+            skillsObserver.observe(skillsSection);
+        }
+
+        // Navbar background change on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('header');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.9)';
+            }
+        });
+
+        // Initial fade-in for hero section
+        window.addEventListener('load', () => {
+            document.querySelector('.fade-in').classList.add('visible');
+        });
+    </script>
+
+</body>
+
+</html>
