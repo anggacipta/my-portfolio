@@ -138,6 +138,71 @@
             transition: width 1.5s ease-out;
             width: 0;
         }
+
+        /* Mobile menu styles */
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #374151;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        @media (max-width: 768px) {
+            .desktop-menu {
+                display: none !important;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .mobile-menu {
+                display: none !important;
+            }
+
+            .hamburger {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 
@@ -145,20 +210,47 @@
 
     <!-- Navbar -->
     <header class="fixed w-full bg-white/90 backdrop-blur-md shadow-lg z-50 transition-all duration-300">
-        <nav class="container mx-auto flex justify-between items-center p-4">
-            <h1 class="text-2xl font-bold gradient-text">Acna</h1>
-            <ul class="flex space-x-8">
-                <li><a href="#about" class="nav-link hover:text-blue-600 transition-colors">About</a></li>
-                <li><a href="#skills" class="nav-link hover:text-blue-600 transition-colors">Skills</a></li>
-                <li><a href="#projects" class="nav-link hover:text-blue-600 transition-colors">Projects</a></li>
-                <li><a href="#contact" class="nav-link hover:text-blue-600 transition-colors">Contact</a></li>
+        <nav class="container mx-auto flex justify-between items-center p-4 relative">
+            <h1 class="text-xl md:text-2xl font-bold gradient-text">Acna</h1>
+
+            <!-- Desktop Menu -->
+            <ul class="desktop-menu flex space-x-6 md:space-x-8">
+                <li><a href="#about"
+                        class="nav-link hover:text-blue-600 transition-colors text-sm md:text-base">About</a></li>
+                <li><a href="#skills"
+                        class="nav-link hover:text-blue-600 transition-colors text-sm md:text-base">Skills</a></li>
+                <li><a href="#projects"
+                        class="nav-link hover:text-blue-600 transition-colors text-sm md:text-base">Projects</a></li>
+                <li><a href="#contact"
+                        class="nav-link hover:text-blue-600 transition-colors text-sm md:text-base">Contact</a></li>
             </ul>
+
+            <!-- Mobile Hamburger -->
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="mobile-menu" id="mobile-menu">
+                <ul class="flex flex-col p-4 space-y-4">
+                    <li><a href="#about" class="nav-link hover:text-blue-600 transition-colors block py-2">About</a>
+                    </li>
+                    <li><a href="#skills" class="nav-link hover:text-blue-600 transition-colors block py-2">Skills</a>
+                    </li>
+                    <li><a href="#projects"
+                            class="nav-link hover:text-blue-600 transition-colors block py-2">Projects</a></li>
+                    <li><a href="#contact" class="nav-link hover:text-blue-600 transition-colors block py-2">Contact</a>
+                    </li>
+                </ul>
+            </div>
         </nav>
     </header>
 
     <!-- Hero Section -->
     <section
-        class="h-screen flex items-center justify-center bg-gradient-to-br from-purple-600 via-blue-600 to-indigo-800 text-white relative overflow-hidden">
+        class="min-h-[70vh] flex items-center justify-center bg-gradient-to-br from-purple-600 via-blue-600 to-indigo-800 text-white relative overflow-hidden pt-20 pb-16">
         <!-- Background particles -->
         <div class="absolute inset-0 overflow-hidden">
             <div class="particle absolute w-2 h-2 bg-white/20 rounded-full animate-pulse"
@@ -173,33 +265,36 @@
                 style="top: 30%; left: 90%; animation-delay: 4s;"></div>
         </div>
 
-        <div class="text-center px-6 z-10 fade-in">
+        <div class="text-center px-6 z-10 fade-in max-w-4xl mx-auto">
             <div class="floating">
                 <h2
-                    class="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
+                    class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
                     Hi, I'm Angga Cipta
                 </h2>
             </div>
-            <p class="text-xl md:text-3xl mb-8 typing" id="typing-text">A Passionate Fullstack Developer</p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <p class="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-6 md:mb-8 typing" id="typing-text">
+                A Passionate Fullstack Developer
+            </p>
+            <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center">
                 <a href="#projects"
-                    class="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold shadow-xl hover:bg-gray-100 hover:scale-105 transition-all duration-300">
+                    class="bg-white text-blue-600 px-6 py-3 md:px-8 md:py-4 rounded-full font-semibold shadow-xl hover:bg-gray-100 hover:scale-105 transition-all duration-300 text-sm md:text-base">
                     <i class="fas fa-code mr-2"></i>View My Work
                 </a>
                 <a href="#contact"
-                    class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition-all duration-300">
+                    class="border-2 border-white text-white px-6 py-3 md:px-8 md:py-4 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition-all duration-300 text-sm md:text-base">
                     <i class="fas fa-envelope mr-2"></i>Contact Me
                 </a>
             </div>
         </div>
 
         <!-- Scroll indicator -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-            <div class="w-6 h-10 border-2 border-white rounded-full flex justify-center">
-                <div class="w-1 h-3 bg-white rounded-full mt-2 animate-bounce"></div>
+        <div class="absolute bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2">
+            <div class="w-5 h-8 md:w-6 md:h-10 border-2 border-white rounded-full flex justify-center">
+                <div class="w-1 h-2 md:h-3 bg-white rounded-full mt-2 animate-bounce"></div>
             </div>
         </div>
     </section>
+
 
     <!-- About -->
     <section id="about" class="py-20 container mx-auto px-6">
@@ -375,8 +470,10 @@
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden relative">
-                    <img src="https://via.placeholder.com/400x200/667eea/ffffff?text=Hospital+Inventory"
-                        alt="Project 1" class="w-full h-48 object-cover">
+                    <img src="images/national-cancer-institute-1c8sj2IO2I4-unsplash.jpg"
+                        alt="Shelves stocked with various medical supplies in a hospital inventory room, fluorescent lighting, organized environment"
+                        class="w-full h-48 object-cover"
+                        onerror="this.onerror=null;this.src='https://via.placeholder.com/400x200?text=Image+Not+Found';">
                     <div class="project-overlay">
                         <div class="text-center text-white">
                             <div class="flex justify-center gap-4 mb-4">
@@ -403,8 +500,7 @@
                 </div>
 
                 <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden relative">
-                    <img src="https://via.placeholder.com/400x200/22223b/ffffff?text=Haruki+Scans"
-                        alt="Project Haruki Scans" class="w-full h-48 object-cover">
+                    <img src="images/mascot.jpg" alt="Project Haruki Scans" class="w-full h-48 object-contain">
                     <div class="project-overlay">
                         <div class="text-center text-white">
                             <div class="flex justify-center gap-4 mb-4">
@@ -412,7 +508,7 @@
                                 <i class="fas fa-language text-2xl"></i>
                                 <i class="fas fa-users text-2xl"></i>
                             </div>
-                            <a href="#"
+                            <a href="https://haruki.web.id" target="_blank" rel="noopener"
                                 class="bg-white text-blue-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition">
                                 View Project
                             </a>
@@ -484,6 +580,31 @@
     </footer>
 
     <script>
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            }
+        });
+
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
@@ -561,23 +682,46 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const progressBars = entry.target.querySelectorAll('.progress-fill');
-                    progressBars.forEach(bar => {
+                    progressBars.forEach((bar, index) => {
                         const width = bar.getAttribute('data-width');
                         setTimeout(() => {
                             bar.style.width = width + '%';
-                        }, 300);
+                        }, 200 + (index * 100)); // Staggered animation
                     });
                     skillsObserver.unobserve(entry.target);
                 }
             });
         }, {
-            threshold: 0.5
+            threshold: 0.2, // Reduced threshold for better mobile compatibility
+            rootMargin: '0px 0px -20px 0px' // Reduced margin for earlier trigger
         });
 
         const skillsSection = document.getElementById('skills');
         if (skillsSection) {
             skillsObserver.observe(skillsSection);
         }
+
+        // Fallback: Animate progress bars on scroll for mobile devices
+        window.addEventListener('scroll', () => {
+            const skillsSection = document.getElementById('skills');
+            if (skillsSection) {
+                const rect = skillsSection.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+
+                // Check if skills section is visible
+                if (rect.top < windowHeight && rect.bottom > 0) {
+                    const progressBars = skillsSection.querySelectorAll('.progress-fill');
+                    progressBars.forEach((bar, index) => {
+                        if (bar.style.width === '' || bar.style.width === '0%') {
+                            const width = bar.getAttribute('data-width');
+                            setTimeout(() => {
+                                bar.style.width = width + '%';
+                            }, index * 100);
+                        }
+                    });
+                }
+            }
+        });
 
         // Navbar background change on scroll
         window.addEventListener('scroll', () => {
